@@ -3,16 +3,24 @@
   "builds": [
     {
       "src": "src/main.ts",
-      "use": "@vercel/node",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "dist/main.ts",
+      "dest": "/public/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/main.ts"
+      "dest": "src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ]
     }
   ]
 }
